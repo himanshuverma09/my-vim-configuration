@@ -3,11 +3,12 @@ if &cp | set nocp | endif
 let s:cpo_save=&cpo
 set cpo&vim
 set number
+set formatoptions-=t
 syntax enable
 vmap gx <Plug>NetrwBrowseXVis
 nmap gx <Plug>NetrwBrowseX
-vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
-nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())
+vnoremap <silent> <Plug>NetrwBrowseXVis :call netrw#BrowseXVis()
+nnoremap <silent> <Plug>NetrwBrowseX :call netrw#BrowseX(expand((exists("g:netrw_gx")? g:netrw_gx : '<cfile>')),netrw#CheckIfRemote())
 let &cpo=s:cpo_save
 unlet s:cpo_save
 set background=dark
@@ -15,7 +16,9 @@ set backspace=2
 set fileencodings=ucs-bom,utf-8,default,latin1
 set modelines=0
 set window=0
+set shell=/bin/zsh
 filetype plugin on
+set fillchars=""
 set omnifunc=syntaxcomplete#Complete
 " vim: set ft=vim :
 
@@ -47,7 +50,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'epilande/vim-react-snippets'
 Plugin 'epilande/vim-es2015-snippets'
-
+Plugin 'fatih/vim-go'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -59,8 +62,6 @@ set clipboard=unnamed
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-
-let g:syntastic_javascript_checkers = ['eslint']
 
 let g:ctrlp_map = '<c-p>'
 
@@ -88,10 +89,13 @@ syntax on
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-
 let g:UltiSnipsExpandTrigger="<c-space>"
 let g:UltiSnipsJumpForwardTrigger="<c-,>"
 let g:UltiSnipsJumpBackwardTrigger="<c-.>"
 
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 
+let g:NERDTreeWinSize=20
 nmap <silent> <C-t> :NERDTreeToggle<CR>
+let g:go_version_warning = 0
