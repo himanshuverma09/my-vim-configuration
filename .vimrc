@@ -35,7 +35,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 Plugin 'vim-scripts/indentpython.vim'
-Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 Plugin 'nvie/vim-flake8'
 Plugin 'scrooloose/nerdtree'
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -50,6 +50,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'epilande/vim-react-snippets'
 Plugin 'epilande/vim-es2015-snippets'
+Plugin 'rafi/awesome-vim-colorschemes'
 Plugin 'fatih/vim-go'
 
 " All of your Plugins must be added before the following line
@@ -93,9 +94,9 @@ let g:UltiSnipsExpandTrigger="<c-space>"
 let g:UltiSnipsJumpForwardTrigger="<c-,>"
 let g:UltiSnipsJumpBackwardTrigger="<c-.>"
 
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+let g:ale_sign_error = 'x'
 
 let g:NERDTreeWinSize=20
 nmap <silent> <C-t> :NERDTreeToggle<CR>
 let g:go_version_warning = 0
+colo gruvbox
